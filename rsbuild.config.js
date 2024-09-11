@@ -5,6 +5,49 @@ const { pluginVueJsx } = require('@rsbuild/plugin-vue-jsx');
 const { pluginBabel } = require('@rsbuild/plugin-babel');
 const { pluginCssMinimizer } = require('@rsbuild/plugin-css-minimizer');
 const { pluginNodePolyfill } = require('@rsbuild/plugin-node-polyfill');
+const {
+  // ElementPlusResolver,
+  // AntDesignVueResolver,
+  VantResolver
+} = require('unplugin-vue-components/resolvers');
+const Components = require('unplugin-vue-components/rspack').default({
+  dts: 'types/components.d.ts',
+  resolvers: [
+    // ElementPlusResolver({
+    //   importStyle: true
+    // }),
+    // AntDesignVueResolver({
+    //   importStyle: true,
+    //   resolveIcons: true
+    // }),
+    VantResolver()
+  ]
+});
+const AutoImport = require('unplugin-auto-import/rspack').default({
+  dts: 'types/auto-imports.d.ts',
+  // 目标文件
+  include: [
+    /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+    /\.vue$/,
+    /\.vue\?vue/, // .vue
+    /\.md$/ // .md
+  ],
+  imports: [
+    'vue',
+    'vue-router',
+    'pinia'
+    // { 'element-plus/es': ['ElLoading', 'ElMessage', 'ElMessageBox'] }
+  ],
+  resolvers: [
+    // ElementPlusResolver({
+    //   importStyle: true
+    // })
+  ],
+  eslintrc: {
+    enabled: false, // 默认false, true启用。生成一次就可以，避免每次工程启动都生成，一旦生成配置文件之后，最好把enable关掉，即改成false。否则这个文件每次会在重新加载的时候重新生成，这会导致eslint有时会找不到这个文件。当需要更新配置文件的时候，再重新打开
+    globalsPropValue: true
+  }
+});
 
 // const { publicVars } = loadEnv({ prefixes: [''] });
 const { resolve } = require('path');
@@ -82,7 +125,11 @@ module.exports = defineConfig({
       insert: !isPrd
     },
     rspack: {
-      target: 'web'
+      target: 'web',
+      plugins: [
+        Components, 
+        AutoImport
+      ]
     }
   },
   plugins: [
@@ -102,7 +149,7 @@ module.exports = defineConfig({
         }
       }
     }),
-    pluginCssMinimizer()
+    pluginCssMinimizer(),
   ],
   performance: {
     removeMomentLocale: true,
