@@ -10,13 +10,13 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@rsbuild/core": "1.0.1-beta.13",
-    "@rsbuild/plugin-babel": "1.0.1-beta.13",
+    "@rsbuild/core": "1.0.1",
+    "@rsbuild/plugin-babel": "1.0.1",
     "@rsbuild/plugin-css-minimizer": "^1.0.2",
-    "@rsbuild/plugin-less": "1.0.1-beta.13",
+    "@rsbuild/plugin-less": "1.0.1",
     "@rsbuild/plugin-node-polyfill": "^1.0.4",
-    "@rsbuild/plugin-vue": "1.0.1-beta.13",
-    "@rsbuild/plugin-vue-jsx": "1.0.1-beta.13",
+    "@rsbuild/plugin-vue": "1.0.1",
+    "@rsbuild/plugin-vue-jsx": "1.0.1",
     "unplugin-auto-import": "^0.18.2",
     "unplugin-vue-components": "^0.27.4",
     "vant": "^4.9.5"
