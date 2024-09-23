@@ -1,21 +1,15 @@
 <template>
-  <div class="red">red
-    <child></child>
-  </div>
+  <div class="child">child</div>
 </template>
 <script lang="ts" setup>
-import Child from './Child.vue';
 onActivated(async () => {
-  console.info('activated-test1');
+  console.info('activated-child');
 });
 </script>
 <script lang="ts">
 export default {
-  name: 'Test1'
+  name: 'Child'
 }
 </script>
 <style lang="less">
-.red {
-  color: red;
-}
 </style>

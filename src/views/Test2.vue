@@ -1,7 +1,10 @@
 <template>
-  <div class="blue">blue</div>
+  <div class="blue">blue
+    <child></child>
+  </div>
 </template>
 <script lang="ts" setup>
+import Child from './Child.vue';
 onActivated(async () => {
   console.info('activated-test2');
 });
